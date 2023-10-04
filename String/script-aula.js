@@ -89,8 +89,26 @@ preco = preco.replace(",", "."); // 'R$ 1200.43'
 
 //STR.SPLIT(PADRAO)
 //Divide a string de acordo com o padrão passado e retorna uma array.
+//join é um método de Array
 const arrayItens = listaItens.split(" ");
 
 const htmlText = "<div>O melhor item</div><div>A melhor lista</div>";
 const htmlArray = htmlText.split("div");
 const htmlNovo = htmlArray.join("section");
+
+//STR.TOLOWERCASE() E STR.TOUPPERCASE()
+//Retorna a string em letras maiúsculas ou minúsculas. Bom para verificarmos input de usuários.
+const sexo1 = "Feminino";
+const sexo2 = "feminino";
+const sexo3 = "FEMININO";
+
+sexo1.toLowerCase() === "feminino"; // true
+sexo2.toLowerCase() === "feminino"; // true
+sexo3.toLowerCase() === "feminino"; // true
+
+//STR.TRIM(), STR.TRIMSTART(), STR.TRIMEND()
+//Remove espaço em branco do início ou final de uma string.
+const valor = "  R$ 23.00   ";
+valor.trim(); // 'R$ 23.00'
+valor.trimStart(); // 'R$ 23.00   '
+valor.trimEnd(); // '  R$ 23.00'
