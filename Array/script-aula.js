@@ -83,12 +83,11 @@ console.log(carros3); // ['Honda', 'Kia', 'Ford', 'Fiat', 'VW', 'Ferrari'];
 
 //[].SHIFT() E [].POP()
 //[].shift() remove o primeiro elemento da array e retorna o mesmo. //[].pop() remove o último elemento da array e retorna o mesmo.
-const carros4 = ["Ford", "Fiat", "VW", "Honda"];
-const primeiroCarro = carros4.shift(); // 'Ford'
-carros4; // ['Fiat', 'VW', 'Honda'];
+const primeiroCarro = carros3.shift(); // 'Ford'
+console.log(carros3); // ['Fiat', 'VW', 'Honda'];
 
-const ultimoCarro = carros4.pop(); // 'Honda'
-carros4; // ['Fiat', 'VW'];
+const ultimoCarro = carros3.pop(); // 'Honda'
+console.log(carros3); // ['Fiat', 'VW'];
 
 //[].REVERSE()
 //[].reverse() inverte os itens da array e retorna a nova array.
