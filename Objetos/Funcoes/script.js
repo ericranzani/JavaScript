@@ -1,72 +1,38 @@
-// Selecione cada curso e retorne uma array
-// com objetos contendo o título, descricao,
-// aulas e horas de cada curso
-const cursos = document.querySelectorAll(".curso"); //pegando todos cursos
-const arrayCursos = Array.from(cursos); //tranformando em array
+// Retorne a soma total de caracteres dos
+// parágrafos acima utilizando reduce
 
-const objetoCuros = arrayCursos.map((curso) => {
-  const titulo = curso.querySelector("h1").innerText;
-  const desc = curso.querySelector("p").innerText;
-  const aulas = curso.querySelector(".aulas").innerText;
-  const horas = curso.querySelector(".horas").innerText;
-  return {
-    titulo,
-    descricao: desc,
-    aulas,
-    horas,
-  };
-});
-console.log(objetoCuros);
+const paragrafos = document.querySelectorAll("p");
 
-// Retorne uma lista com os
-// números maiores que 100
-const numeros = [3, 44, 333, 23, 122, 322, 33];
-const maior100 = numeros.filter((n) => n > 100);
-console.log(maior100);
-
-// Verifique se Baixo faz parte
-// da lista de instrumentos e retorne true
-const instrumentos = ["Guitarra", "Baixo", "Bateria", "Teclado"];
-const temBaixo = instrumentos.some((instrumento) => instrumento === "Baixo");
-console.log(temBaixo);
-
-// Retorne o valor total das compras
-const compras = [
-  {
-    item: "Banana",
-    preco: "R$ 4,99",
+const totalCaracter = Array.prototype.reduce.call(
+  paragrafos,
+  (acumulador, item) => {
+    return acumulador + item.innerText.length;
   },
-  {
-    item: "Ovo",
-    preco: "R$ 2,99",
-  },
-  {
-    item: "Carne",
-    preco: "R$ 25,49",
-  },
-  {
-    item: "Refrigerante",
-    preco: "R$ 5,35",
-  },
-  {
-    item: "Quejo",
-    preco: "R$ 10,60",
-  },
-];
-let somaPreco = 0;
+  0
+);
 
-// opção feito com .reduce
-const valorTotal = compras.reduce((acumulador, item) => {
-  const precoLimpo = +item.preco.replace("R$", "").trim().replace(",", ".");
-  return acumulador + precoLimpo;
-}, 0);
+console.log(totalCaracter); //655
+console.log(paragrafos);
 
-// opção feito com .map
-const arrayListPreco = compras.map((item) => {
-  valor = +item.preco.replace("R$", "").trim().replace(",", ".");
-  somaPreco += valor;
-  return somaPreco;
-});
+// Crie uma função que retorne novos elementos
+// html, com os seguintes parâmetros
+// tag, classe e conteudo.
 
-console.log(valorTotal);
-console.log(somaPreco.toFixed(2));
+function criarElemento(tag, classe, conteudo) {
+  const elemento = document.createElement(tag);
+  classe ? elemento.classList.add(classe) : null;
+  conteudo ? (elemento.innerHTML = conteudo) : null;
+
+  return elemento;
+}
+console.log(criarElemento("ul", "ativo", "Esse é o conteudo"));
+
+// Crie uma nova função utilizando a anterior como base
+// essa nova função deverá sempre criar h1 com a
+// classe titulo. Porém o parâmetro conteudo continuará dinâmico
+const h1Titulo = criarElemento.bind(null, "h1", "titulo");
+const cursoJS = h1Titulo("Curso de JavaScript");
+const cursoHTML = h1Titulo("Curso de HTML");
+
+console.log(h1Titulo("Curso de React"));
+console.log(cursoJS, cursoHTML);
