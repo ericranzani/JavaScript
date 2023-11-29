@@ -1,7 +1,7 @@
 //isolando o codigo do vagedor por tabs
 function initTabNav() {
-  const tabMenu = document.querySelectorAll(".js-tabmenu li");
-  const tabContent = document.querySelectorAll(".js-tabcontent section");
+  const tabMenu = document.querySelectorAll("[data-tab='menu'] li");
+  const tabContent = document.querySelectorAll("[data-tab='content'] section");
 
   if (tabMenu.length && tabContent.length) {
     tabContent[0].classList.add("ativo");
@@ -11,7 +11,8 @@ function initTabNav() {
       tabContent.forEach((section) => {
         section.classList.remove("ativo");
       });
-      tabContent[index].classList.add("ativo");
+      const direcao = tabContent[index].dataset.anime;
+      tabContent[index].classList.add("ativo", direcao);
     }
 
     //loop de cada item, pegando o item e seu index, a cda item adiciona um evento de click e apos o click faz a função de activeTab passando o index do item
@@ -25,7 +26,9 @@ function initTabNav() {
 initTabNav();
 
 function initAccordion() {
-  const accordionIList = document.querySelectorAll(".js-accordion dt");
+  const accordionIList = document.querySelectorAll(
+    "[data-anime='accordion'] dt"
+  );
   const activeClass = "ativo";
 
   if (accordionIList.length) {
@@ -46,7 +49,9 @@ function initAccordion() {
 initAccordion();
 
 function initScrollSuave() {
-  const linksInternos = document.querySelectorAll(".js-menu a[href^='#']");
+  const linksInternos = document.querySelectorAll(
+    "[data-menu='suave'] a[href^='#']"
+  );
 
   function scrollToSection(event) {
     event.preventDefault();
@@ -72,7 +77,7 @@ function initScrollSuave() {
 initScrollSuave();
 
 function initAnimacaoScroll() {
-  const sections = document.querySelectorAll(".js-scroll");
+  const sections = document.querySelectorAll("[data-anime='scroll']");
 
   if (sections.length) {
     const windowMetade = window.innerHeight * 0.6;
