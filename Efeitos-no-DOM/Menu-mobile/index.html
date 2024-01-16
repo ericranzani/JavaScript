@@ -11,7 +11,6 @@
       rel="stylesheet"
     />
     <script>
-      //codigo para que as pessoas que não tem o js habilitado ou com codigo antigo, poderem ver o conteudo
       document.documentElement.className += " js";
     </script>
     <link rel="stylesheet" tyoe="text/css" href="css/style.css" />
@@ -20,7 +19,11 @@
   <body>
     <div class="grid-container">
       <nav class="menu" data-menu="suave">
-        <ul>
+        <!-- aria-expanded e aria-controls comandos para acessibilidade,  expanded como esta falso e pra dizer que o botão está escondido e controls para dizer oque o botão está controlando passando o id-->
+        <button data-menu="button" aria-expanded="false" aria-controls="menu">
+          Menu
+        </button>
+        <ul data-menu="list" id="menu">
           <li><a href="#animais">Animais</a></li>
           <li data-dropdown>
             <a href="sobre.html">Sobre</a>
