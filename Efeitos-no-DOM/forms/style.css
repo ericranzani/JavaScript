@@ -10,6 +10,7 @@ form {
   margin: 0 auto;
 }
 
+/*input[type="text"],*/
 input,
 textarea {
   width: 100%;
@@ -22,4 +23,8 @@ textarea {
 
 textarea {
   height: 150px;
+}
+
+.invalido {
+  border-color: red;
 }
