@@ -31,8 +31,8 @@ const cep = fetch("https://viacep.com.br/ws/09820480/json/");
 cep
   .then((r) => r.json())
   .then((cep) => {
-    console.log(cep);
-    console.log(cep.bairro, cep.logradouro);
+    //console.log(cep);
+    //console.log(cep.bairro, cep.logradouro);
     const conteudo2 = document.querySelector(".conteudo-cep");
     conteudo2.innerText = cep.logradouro;
   });
@@ -61,5 +61,52 @@ sobre
     div.innerHTML = body;
     const titulo = div.querySelector("h1");
     document.querySelector("h1").innerText = titulo.innerText;
-    console.log(titulo);
+    //console.log(titulo);
   });
+
+/*.BLOB()
+Um blob é um tipo de objeto utilizado para representação de dados de um arquivo. O blob pode ser utilizado para transformarmos requisições de imagens por exemplo. O blob gera um URL único.*/
+const imagem = fetch("./imagem.png");
+
+imagem
+  .then((r) => r.blob())
+  .then((body) => {
+    const blobUrl = URL.createObjectURL(body);
+    const imagemDom = document.querySelector("img");
+    imagemDom.src = blobUrl;
+  });
+
+/*.CLONE()
+Ao utilizarmos os métodos acima, text, json e blob, a resposta é modificada. Por isso existe o método clone, caso você necessite transformar uma resposta em diferentes valores.
+cep.then((r) => {
+  const r2 = r.clone();
+  r.text().then((text) => {
+    console.log(text);
+  });
+  r2.json().then((json) => {
+    console.log(json);
+  });
+});*/
+
+/*.HEADERS
+É uma propriedade que possui os cabeçalhos da requisição. É um tipo de dado iterável então podemos utilizar o forEach para vermos cada um deles.
+cep.then((r) => {
+  console.log(r);
+  r.headers.forEach(console.log);
+});*/
+
+/*.STATUS E .OK
+Retorna o status da requisição. Se foi 404, 200, 202 e mais. ok retorna um valor booleano sendo true para uma requisição de sucesso e false para uma sem sucesso.*/
+cep.then((r) => {
+  console.log(r.status);
+  if (r.status === 404) {
+    console.log("página não existe");
+  }
+});
+
+/*.URL E .TYPE
+.url retorna o url da requisição. .type retorna o tipo da reposta.
+cors = rerquisição fora do servidor que é permitida*/
+cep.then((r) => {
+  console.log(r.url, r.type);
+});
