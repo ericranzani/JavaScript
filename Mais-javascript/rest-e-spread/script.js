@@ -1,7 +1,21 @@
-// Crie 4 li's na página
-// Utilizando o for...of
-// adicione uma classe a cada li
+// Reescreva a função utilizando
+// valores iniciais de parâmetros com ES6
+function createButton(background = "blue", color = "red") {
+  /* background = background || 'blue';
+  if(color === undefined) {
+    color = 'red';
+  } */
+  const buttonElement = document.createElement("button");
+  buttonElement.style.background = background;
+  buttonElement.style.color = color;
+  return buttonElement;
+}
 
-// Utilize o for...in para listar
-// todos as propriedades e valores
-// do objeto window
+const redButton = createButton();
+console.log(redButton);
+
+// Utilize o método push para inserir as frutas ao final de comidas.
+const frutas = ["Banana", "Uva", "Morango"];
+const comidas = ["Pizza", "Batata"];
+comidas.push(...frutas);
+console.log(comidas);
