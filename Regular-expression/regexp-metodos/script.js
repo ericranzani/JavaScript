@@ -60,3 +60,84 @@ let regexpResult;
 while ((regexpResult = regexp3.exec(frase3)) !== null) {
   console.log(regexpResult[0]);
 }
+
+/*STR.MATCH()
+O match() é um método de strings que pode receber como argumento uma Regexp. Existe uma diferença de resultado quando utilizamos a flag g ou não.
+-Se não tiver match retorna null*/
+const regexp4 = /\w{2,}/g;
+const regexpSemG = /\w{2,}/;
+
+frase3.match(regexp4);
+// ['JavaScript', 'TypeScript', 'CoffeeScript']
+
+frase3.match(regexpSemG);
+// ["JavaScript", index: 0, input: "JavaScript,
+// TypeScript e CoffeeScript", groups: undefined]
+
+/*STR.SPLIT()
+O split serve para distribuirmos uma string em uma array, quebrando a string no argumento que for passado. Este método irá remover o match da array final.*/
+const regexp5 = /Script/g;
+const resultado = frase3.split(regexp5);
+console.log(resultado);
+
+/*STR.REPLACE()
+O método replace() é o mais interessante por permitir a utilização de funções de callback para cada match que ele der com a Regexp.
+-Mais utilizado*/
+const tags = `
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>
+`;
+
+const regexp6 = /(?<=<\/?)\w+/g; //pegando todas as tag
+
+const result = tags.replace(regexp6, "div");
+console.log(result);
+
+/*CAPTURA
+É possível fazer uma referência ao grupo de captura dentro do argumento do replace. Então podemos utilizar $&, $1 e mais.*/
+const regexp7 = /<li/g;
+
+const resultCap = tags.replace(regexp7, '$& class="ativo"');
+console.log(resultCap);
+
+/*GRUPOS DE CAPTURA
+É possível definirmos quantos grupos de captura quisermos.*/
+const emails = `
+empresa@email.com
+contato@email.com
+suporte@email.com
+`;
+
+const regexp8 = /(\w+@)[\w.]+/g;
+
+const resultEmail = emails.replace(regexp8, "$1gmail.com");
+console.log(resultEmail);
+// empresa@gmail.com
+// contato@gmail.com
+// suporte@gmail.com
+
+/*CALLBACK
+Para substituições mais complexas, podemos utilizar um callback como segundo argumento do replace. O valor do return será o que irá substituir cada match.*/
+const regexp9 = /(\w+)(@[\w]+)/g;
+const emails2 = `joao@homail.com.br
+marta@ggmail.com.br
+bruna@oulook.com.br`;
+
+const resultCallBack = emails2.replace(regexp9, function (...args) {
+  //console.log(args);
+  if (args[2] === "@homail") {
+    return `${args[1]}@hotmail`;
+  } else if (args[2] === "@ggmail") {
+    return `${args[1]}@gmail`;
+  } else if (args[2] === "@oulook") {
+    return `${args[1]}@outlook`;
+  } else {
+    return "x";
+  }
+});
+console.log(resultCallBack);
+// joao@hotmail.com.br
+// marta@gmail.com.br
+// bruna@outlook.com.br
