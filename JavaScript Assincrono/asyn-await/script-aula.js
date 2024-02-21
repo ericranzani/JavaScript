@@ -60,7 +60,7 @@ iniciarAsync();
 /*PROMISE
 O resultado da expressão à frente de await tem que ser uma promise. E o retorno do await será sempre o resultado desta promise.*/
 async function asyncSemPromise() {
-  // Console não irá esperar.
+  // Console não irá esperar
   await setTimeout(() => console.log("Depois de 1s"), 3000);
   console.log("acabou");
 }
